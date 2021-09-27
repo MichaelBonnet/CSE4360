@@ -1,0 +1,113 @@
+// Below is everything included in the instructor's 
+// "Code installation for Homework 1"
+// announcement on the class's learning management system (Canvas).
+
+For Homework 1, code is provided for Linux, MacOS, and WIndows (under Cygwin). 
+
+I am also posting a virtual box image of Ubuntu Linux for which you should follow the Linux instructions (after setting up VirtualBox).
+
+Here are the code installation and run requirements/instructions:
+
+ 
+
+Windows
+
+To install the system on Windows you need to install Cygwin plus a number of extra packages. The extra packages are (just search for them in the setup window for Cygwin - if you already installed Cygwin, just run the setup again and it will allow you to add packages by searching for them and the under New setting it to the newest version number available):
+
+imake
+image-debuginfo
+libXaw-devel
+libXt-devel
+xinit
+
+> Put tar file in your Cygwin home directory:     C:\cygwin64\home\<username>
+
+> Open   Cygwin64 Terminal   and list the directory ( ls ) which should show the tar file
+
+> Start the X server by executing:    startxwin &
+
+> Set the display:     export DISPLAY=:0
+
+> Go to the project folder (kin or dyn):  cd hwk1_Cygwin/kin
+
+> Build the Makefile (you only have to do this once):    xmkmf
+
+> Compile the project:    make
+
+This will produce a few warnings and show you whether there were errors  (ignore the can not build   Kinematics.man  error - this is just that it does not find documentation to build)
+
+> Run the executable:  ./Kinematics.exe
+
+ 
+
+ 
+
+MacOS
+
+To install the system on macOS you need to install Xcode and Xquartz plus a number of extra packages (through homebrew):
+
+Install    Xcode from the app store
+
+Install XQuartz
+
+To get the extra libraries you need to install    homebrew    (an open source package installer for MacOS). The install the following packages:
+
+imake  :     brew install imake
+
+libxaw :    brew install libxaw
+
+ 
+
+Put the tar file on your on your computer and uncompress it
+
+Start    XQuartz   which should open a terminal window (you can open additional ones under the Applications tab of XQuartz
+
+In the terminal from XQuartz:
+
+> Go to the project folder (kin or dyn):  cd ~/<path to where you put the file>/hwk1_OSX/kin
+
+> Build the Makefile (you only have to do this once):    xmkmf
+
+> Compile the project:    make
+
+This will produce a few warnings and show you whether there were errors  (ignore the can not build   Kinematics.man  error - this is just that it does not find documentation to build)
+
+> Run the executable:  ./Kinematics
+
+ 
+
+Ubuntu (Linux)
+
+To install it under Ubuntu 18.04 (and similarly other Linux distributions) you need to install a number of extra packages with the development libraries:
+
+apt-get install build-essential
+
+apt-get install xutils-dev
+
+apt-get install libxt-dev
+
+apt-get install libxaw7-dev
+
+ 
+
+Put the tar file on your on your computer and uncompress it.
+
+In a terminal:
+
+> Go to the project folder (kin or dyn):  cd ~/<path to where you put the file>/hwk1_Linux64/kin
+
+> Build the Makefile (you only have to do this once):    xmkmf
+
+> Compile the project:    make
+
+This will produce a few warnings and show you whether there were errors  (ignore the can not build   Kinematics.man  error - this is just that it does not find documentation to build)
+
+> Run the executable:  ./Kinematics
+
+ 
+
+Remotely on Omega
+
+To build it remotely on Omega.uta.edu  you need to locally run an X server (XQuartz on OSX, Cygwin X server from Windows). In an X terminal,  ssh to Omega with X-forwarding (from Linux ssh -X <username>@omega.uta.edu  ,   from OSX ssh -Y <username>@omega.uta.edu , from Cygwin install the openssh package and then run ssh -X <username>@omega.uta.edu).
+
+To build it follow the same steps as for Linux above (it is a Linux machine) except none of the package installs are required.
