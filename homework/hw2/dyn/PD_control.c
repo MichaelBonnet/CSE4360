@@ -35,7 +35,7 @@ double PD_control(double theta, double theta_dot, double theta_ref, double theta
     // For testing and finding out mgl
     // printf("mg = %f\n", 1/cos(theta));
 
-    double mg     = 1.1760;
+    double mg     = 1.1760; // settles around here eventually
     double G_term = mg * cos(theta);
 
     /* ============== *
@@ -52,7 +52,8 @@ double PD_control(double theta, double theta_dot, double theta_ref, double theta
 
     // For testing and finding out B
     // printf("B = %f\n", 1/theta_dot);
-    double B_friction = 0.1000;
+
+    double B_friction = 0.1000; // settles around here eventually
     double B_term     = B_friction * theta_dot;
 
     /* ============== *
@@ -74,7 +75,8 @@ double PD_control(double theta, double theta_dot, double theta_ref, double theta
 
     // For testing and finding out I
     // printf("I = %f\n", 1/theta_double_dot);
-    double I_inertia = 0.0360;
+
+    double I_inertia = 0.0360; // settles around here eventually
     double I_term    = I_inertia * theta_double_dot;
 
     /* ============== *
@@ -86,6 +88,7 @@ double PD_control(double theta, double theta_dot, double theta_ref, double theta
     // τ = I*Θdotdot + B*Θdot + G*(Θ)
 
     // Total term, having found out each of the 3 component terms
+    
     double torque = I_term + B_term + G_term;
 
     /* ============== *
