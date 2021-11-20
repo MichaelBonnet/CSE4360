@@ -1,0 +1,19 @@
+LOCAL_LIBRARIES = -lm -Llib -lCamera $(XAWLIB) $(XMULIB) $(XTOOLLIB) $(XLIB) \
+	          $(XEXTLIB) $(MATHLIB) 
+
+EXTRA_LIBRARIES = -lm -Llib -lCamera
+
+CDEBUGFLAGS = -g -ggdb
+
+CC = gcc -fPIC
+
+PROG =	Vision
+
+SRCS =  process_image.c
+
+INCL = 
+
+OBJS = $(SRCS:.c=.o)
+
+ComplexProgramTarget($(PROG))
+
