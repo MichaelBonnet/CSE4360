@@ -1,5 +1,5 @@
 // ================================== //
-// === PART 1 - TEMPLATE MATCHING === //
+// === PART 2 - TEMPLATE MATCHING === //
 // ================================== //
 
 #include <stdio.h>
