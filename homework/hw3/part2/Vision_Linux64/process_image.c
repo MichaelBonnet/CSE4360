@@ -1,3 +1,7 @@
+// ================================== //
+// === PART 1 - TEMPLATE MATCHING === //
+// ================================== //
+
 #include <stdio.h>
 #include <math.h>
 #include <X11/Xlib.h>
@@ -121,12 +125,13 @@ void get_norm_cross_correlation(unsigned char image[DIM][DIM], double template[r
     }
 }
 
-// Normalize the filtered image
+// Normalize the templated image
 void normalize(double image[DIM][DIM], unsigned char nrml_img[DIM][DIM], int row, int col)
 {
     double min = 9999.9;
     double max = -9999.9;
 
+    // Get the minimum and the maximum
     for (int i = 0; i < row; i++)      // iterate through every row
     {
         for (int j = 0; j < col; j++)  // iterate through every column
@@ -142,19 +147,20 @@ void normalize(double image[DIM][DIM], unsigned char nrml_img[DIM][DIM], int row
         }
     }
 
+    // Using minimum and maximum,
+    // Normalize the image to get edges
     for (int i = 0; i < row; i++)      // iterate through every row
     {
         for (int j = 0; j < col; j++)  // iterate through every column
         {
             if (min != max)
-            {
+            { // match found
                 // normalize value
                 nrml_img[i][j] = (unsigned char)((image[i][j] - min) * 255 / (max - min));
             }
             else
-            {
-                // if there's no match
-                nrml_img[i][j] = 0;
+            { // no match found
+                nrml_img[i][j] = 0; // record a zero
             }
         }
     }
@@ -179,7 +185,8 @@ void process_image(unsigned char image[DIM][DIM], int size[2], unsigned char pro
     create_template(image, template);
 
     double corr_matrix[DIM][DIM];           // pre-normalization correlation matrix
-    get_norm_cross_correlation(image, template, row, col, corr_matrix);
+    get_norm_cross_correlation(image, template, row, col, corr_matrix);  // get the normalization matrix
 
+    // Normalize with the correlation matrix
     normalize(corr_matrix, proc_img, row, col);
 }
